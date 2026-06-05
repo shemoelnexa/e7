@@ -1,8 +1,10 @@
-import base64, re, pathlib
+import base64, re, pathlib, sys
 
 root = pathlib.Path("/mnt/d/Code Files/e7")
 cdn  = pathlib.Path("/tmp/cdn")
-html = (root/"index.html").read_text(encoding="utf-8")
+src_name = sys.argv[1] if len(sys.argv) > 1 else "index.html"
+out_name = sys.argv[2] if len(sys.argv) > 2 else "e7-landing-page.html"
+html = (root/src_name).read_text(encoding="utf-8")
 
 def b64(p): return base64.b64encode(pathlib.Path(p).read_bytes()).decode()
 
@@ -39,7 +41,7 @@ for ref in refs:
     html = html.replace(ref, f"data:{mime[ext]};base64,{b64(root/ref)}")
 print("inlined images:", len(refs), [r.split('/')[-1] for r in refs])
 
-out=root/"e7-landing-page.html"; out.write_text(html,encoding="utf-8")
+out=root/out_name; out.write_text(html,encoding="utf-8")
 leftover=re.findall(r'(assets/|https://cdn\.jsdelivr|https://unpkg|https://cdnjs)', html)
 print("output size MB:", round(out.stat().st_size/1024/1024,1))
 print("remaining external/asset refs:", len(leftover), set(leftover))
