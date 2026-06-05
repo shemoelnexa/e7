@@ -40,20 +40,6 @@ HERO = '''    <section class="hero-section inner-banner overlay-banner" id="home
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- ============ PLATFORMS ============ -->
-    <section class="platforms-section">
-      <div class="container-fluid">
-        <p class="platforms-label"><span data-li="en">Available on</span><span data-li="ar">متاح على</span></p>
-        <div class="platform-tags">
-          <span class="tag">Web</span>
-          <span class="tag">Mac</span>
-          <span class="tag">Windows</span>
-          <span class="tag">iOS</span>
-          <span class="tag">Android</span>
-        </div>
-      </div>
     </section>'''
 sub(r'    <section class="hero-section inner-banner overlay-banner" id="home">.*?\n    </section>',
     HERO, flags=re.S, label="hero")
@@ -189,23 +175,19 @@ CSS = '''    /* ============ V2 ADDITIONS ============ */
     .hero-section .banner-description .hero-badge{display:inline-block;width:fit-content;background:rgba(107,203,218,.18);border:1px solid rgba(107,203,218,.5);color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border-radius:30px;margin-bottom:.2rem;}
     body.ar .hero-section .banner-description .hero-badge{letter-spacing:0;}
 
-    .platforms-section{padding:2.5rem 0;background:#f4f7f8;border-bottom:1px solid var(--line);text-align:center;}
-    .platforms-section .platforms-label{color:var(--gray);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:0 0 1rem;}
-    body.ar .platforms-section .platforms-label{letter-spacing:0;}
-    .platform-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:.7rem;}
-    .platform-tags .tag{background:#fff;border:1px solid var(--line);padding:7px 20px;border-radius:30px;font-size:14px;font-weight:600;color:var(--slate-2);}
-
     .section-label{color:var(--teal-deep);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem;}
     body.ar .section-label{letter-spacing:0;}
     .what-we-deliver-section .wwd-head .wwd-sub{color:var(--teal-2);font-size:28px;font-weight:500;line-height:1.2;text-transform:none;max-width:100%;margin:.4rem 0 2.5rem;}
-    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem;}
-    .benefit-card{background:#f4f7f8;border:1px solid var(--line);border-radius:16px;padding:2rem;transition:transform .25s ease,box-shadow .25s ease;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;align-items:stretch;}
+    .benefit-card{background:#f4f7f8;border:1px solid var(--line);border-radius:16px;padding:1.4rem;transition:transform .25s ease,box-shadow .25s ease;}
     .benefit-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(3,20,28,.08);}
-    .benefit-icon{width:52px;height:52px;background:var(--teal);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;margin-bottom:1.2rem;}
-    .benefit-card h4{color:var(--ink);font-size:18px;font-weight:700;line-height:1.3;margin:0 0 .6rem;}
-    .benefit-card p{color:var(--slate-2);font-size:15px;font-weight:400;line-height:1.7;margin:0;}
+    .benefit-icon{width:44px;height:44px;background:var(--teal);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;margin-bottom:1rem;}
+    .benefit-card h4{color:var(--ink);font-size:16px;font-weight:700;line-height:1.3;margin:0 0 .55rem;}
+    .benefit-card p{color:var(--slate-2);font-size:13.5px;font-weight:400;line-height:1.6;margin:0;}
+    @media (max-width:1199px){.benefits-grid{grid-template-columns:repeat(3,1fr);gap:1.4rem;}}
+    @media (max-width:767px){.benefits-grid{grid-template-columns:1fr;}}
 
-    .whofor-section{padding:0 0 6rem;}
+    .whofor-section{padding:6rem 0;}
     .whofor-section .whofor-head{margin-bottom:2.5rem;}
     .whofor-section h2{color:#000;font-size:54px;font-weight:900;line-height:.95;text-transform:uppercase;max-width:760px;margin:0;}
     body.ar .whofor-section h2{text-transform:none;line-height:1.1;}
