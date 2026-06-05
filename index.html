@@ -310,6 +310,37 @@
       .empowering-section h2{font-size:30px;}
     }
     @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important;}}
+    /* ============ V2 ADDITIONS ============ */
+    .hero-section .banner-description .hero-badge{display:inline-block;width:fit-content;background:rgba(107,203,218,.18);border:1px solid rgba(107,203,218,.5);color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border-radius:30px;margin-bottom:.2rem;}
+    body.ar .hero-section .banner-description .hero-badge{letter-spacing:0;}
+
+    .section-label{color:var(--teal-deep);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem;}
+    body.ar .section-label{letter-spacing:0;}
+    .what-we-deliver-section .wwd-head .wwd-sub{color:var(--teal-2);font-size:28px;font-weight:500;line-height:1.2;text-transform:none;max-width:100%;margin:.4rem 0 2.5rem;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;align-items:stretch;}
+    .benefit-card{background:#f4f7f8;border:1px solid var(--line);border-radius:16px;padding:1.4rem;transition:transform .25s ease,box-shadow .25s ease;}
+    .benefit-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(3,20,28,.08);}
+    .benefit-icon{width:44px;height:44px;background:var(--teal);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;margin-bottom:1rem;}
+    .benefit-card h4{color:var(--ink);font-size:16px;font-weight:700;line-height:1.3;margin:0 0 .55rem;}
+    .benefit-card p{color:var(--slate-2);font-size:13.5px;font-weight:400;line-height:1.6;margin:0;}
+    @media (max-width:1199px){.benefits-grid{grid-template-columns:repeat(3,1fr);gap:1.4rem;}}
+    @media (max-width:767px){.benefits-grid{grid-template-columns:1fr;}}
+
+    .whofor-section{padding:6rem 0;}
+    .whofor-section .whofor-head{margin-bottom:2.5rem;}
+    .whofor-section h2{color:#000;font-size:54px;font-weight:900;line-height:.95;text-transform:uppercase;max-width:760px;margin:0;}
+    body.ar .whofor-section h2{text-transform:none;line-height:1.1;}
+    .whofor-section h2 span{color:var(--teal-2);}
+    .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem;}
+    .who-grid .who-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:2rem;}
+    .who-grid .who-card h4{color:var(--teal-deep);font-size:18px;font-weight:700;margin:0 0 1rem;}
+    .who-grid .who-card ul{list-style:none;padding:0;margin:0;}
+    .who-grid .who-card li{color:var(--slate-2);font-size:15px;line-height:1.5;padding:.7rem 0;border-bottom:1px solid var(--line);}
+    .who-grid .who-card li:last-child{border-bottom:none;}
+    .who-grid .who-card li::before{content:'\2192 \00a0';color:var(--teal-deep);font-weight:700;}
+    body.ar .who-grid .who-card li::before{content:'\2190 \00a0';}
+
+    @media (max-width:991px){.whofor-section h2{font-size:38px;}}
   </style>
 </head>
 <body class="en">
@@ -338,13 +369,6 @@
             </div>
           </div>
           <div class="col-lg-3 col-6 d-flex gap-3 gap-lg-4 align-items-center justify-content-end">
-            <div class="search-box" onclick="openSearch()" role="button" aria-label="Search"><i class="fas fa-search"></i></div>
-            <div class="header-button d-none d-lg-flex">
-              <a href="#register" class="btn">
-                <span data-li="en">Register Interest</span><span data-li="ar">سجّل اهتمامك</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
             <div class="mobile-menu-toggle">
               <button class="btn" onclick="openSidebar()" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
@@ -369,7 +393,6 @@
       <li><a class="mobile-nav-link" href="#faq" onclick="closeSidebar()"><span data-li="en">FAQ</span><span data-li="ar">الأسئلة الشائعة</span></a></li>
     </ul>
     <div class="mobile-sidebar-footer">
-      <a href="#register" class="btn btn-light" onclick="closeSidebar()"><span data-li="en">Register Interest</span><span data-li="ar">سجّل اهتمامك</span></a>
       <div class="langset" role="group" aria-label="Language">
         <button class="lang-btn active" onclick="setLang('en')">EN</button>
         <button class="lang-btn" onclick="setLang('ar')">عربي</button>
@@ -378,17 +401,6 @@
   </div>
   <div class="mobile-sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-  <!-- ============ SEARCH OVERLAY ============ -->
-  <div class="search-overlay" id="searchOverlay">
-    <div class="search-overlay-content">
-      <button class="search-close-btn" onclick="closeSearch()" aria-label="Close"><i class="fas fa-times"></i></button>
-      <div class="search-input-container">
-        <input type="text" class="search-input" placeholder="Search Minhaji…" />
-        <button class="search-submit-btn" aria-label="Search"><i class="fas fa-search"></i></button>
-      </div>
-    </div>
-  </div>
-
   <main class="main">
 
     <!-- ============ HERO ============ -->
@@ -396,34 +408,13 @@
       <div class="hero-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><span data-li="en">Hero Visual</span><span data-li="ar">الصورة الرئيسية</span></div>
       <div class="container-fluid">
         <div class="row align-items-end">
-          <div class="col-xl-6 col-lg-6 d-flex align-items-end" data-aos="fade-up">
+          <div class="col-xl-8 col-lg-10" data-aos="fade-up">
             <div class="banner-description">
+              <span class="hero-badge"><span data-li="en">Powered by AI · Built for Education</span><span data-li="ar">مدعوم بالذكاء الاصطناعي · مصمم للتعليم</span></span>
               <h1 data-lang="en">Learning that moves as fast as your <span class="accent">students do.</span></h1>
               <h1 data-lang="ar">تعلّم يواكب <span class="accent">وتيرة طلابك.</span></h1>
               <p data-lang="en">Minhaji gives schools and universities a smarter way to deliver, manage and track digital learning — across every device, online and offline.</p>
               <p data-lang="ar">منهجي يمنح المدارس والجامعات طريقة أذكى لتوزيع المحتوى الرقمي وإدارته ومتابعة أداء المتعلمين — عبر جميع الأجهزة، باتصال أو بدونه.</p>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 d-flex justify-content-end" data-aos="fade-up" data-aos-delay="150">
-            <div class="hero-form" id="register">
-              <h2><span data-li="en">Register Your Interest</span><span data-li="ar">سجّل اهتمامك</span></h2>
-              <p class="form-intro"><span data-li="en">Our team will walk you through Minhaji — tailored to your institution.</span><span data-li="ar">سيتواصل معك فريقنا لإطلاعك على منهجي بما يناسب مؤسستك.</span></p>
-              <form onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" required placeholder-en="Full Name *" placeholder-ar="الاسم الكامل *" />
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" id="org" name="org" required placeholder-en="Institution *" placeholder-ar="المؤسسة *" />
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" id="email" name="email" required placeholder-en="Work Email *" placeholder-ar="البريد المهني *" />
-                </div>
-                <div class="form-group">
-                  <input type="tel" class="form-control" id="phone" name="phone" required placeholder-en="Phone Number *" placeholder-ar="رقم الهاتف *" />
-                </div>
-                <button type="submit" class="submit-btn"><span data-li="en">Register My Interest</span><span data-li="ar">سجّل اهتمامي</span></button>
-                <p class="form-note"><span data-li="en">No commitment. We reply within 2 business days.</span><span data-li="ar">لا التزام. نرد خلال يومي عمل.</span></p>
-              </form>
             </div>
           </div>
         </div>
@@ -460,80 +451,58 @@
         <div class="wwd-head" data-aos="fade-up">
           <h2 data-lang="en">What You Get</h2>
           <h2 data-lang="ar">ما تحصل عليه</h2>
+          <h3 class="wwd-sub" data-lang="en">Everything educators and institutions actually need.</h3>
+          <h3 class="wwd-sub" data-lang="ar">كل ما تحتاجه المؤسسات التعليمية فعلاً.</h3>
         </div>
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-5" data-aos="fade-up">
-            <div class="ph short"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><span data-li="en">In-app Reading</span><span data-li="ar">القراءة داخل التطبيق</span></div>
+        <div class="benefits-grid" data-aos="fade-up" data-aos-delay="100">
+          <div class="benefit-card">
+            <div class="benefit-icon">AI</div>
+            <h4 data-lang="en">AI that helps students learn, not just read</h4>
+            <h4 data-lang="ar">ذكاء اصطناعي يساعد على الفهم، لا مجرد القراءة</h4>
+            <p data-lang="en">An interactive assistant answers questions directly from book content. Smart page summaries help students absorb material faster, and related articles and videos add context where textbooks fall short.</p>
+            <p data-lang="ar">مساعد تفاعلي يجيب على الأسئلة مباشرة من محتوى الكتاب. ملخصات ذكية تساعد الطلاب على استيعاب المادة بسرعة أكبر، ومقالات ومقاطع فيديو ذات صلة تعمق الفهم حيث يقف الكتاب المدرسي.</p>
           </div>
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="150">
-            <div class="right-content">
-              <h3 data-lang="en">Everything educators and institutions actually need.</h3>
-              <h3 data-lang="ar">كل ما تحتاجه المؤسسات التعليمية فعلاً.</h3>
-              <p data-lang="en">An interactive AI assistant answers questions directly from book content, while smart page summaries speed up comprehension and related articles add context where textbooks fall short.</p>
-              <p data-lang="ar">مساعد ذكي تفاعلي يجيب على الأسئلة مباشرة من محتوى الكتاب، وملخصات ذكية تسرّع الاستيعاب، ومقالات ذات صلة تعمق الفهم حيث يقف الكتاب المدرسي.</p>
-              <p data-lang="en">Real-time dashboards show who's reading, for how long, and where understanding drops off — so decisions are based on actual data, not guesswork.</p>
-              <p data-lang="ar">لوحات تحليل فورية تُظهر من يقرأ وكم من الوقت وأين تكمن صعوبات الفهم — لتُبنى القرارات على بيانات حقيقية لا تخمينات.</p>
-            </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">Data</div>
+            <h4 data-lang="en">Full visibility into learner engagement</h4>
+            <h4 data-lang="ar">رؤية كاملة لمشاركة المتعلمين</h4>
+            <p data-lang="en">Real-time dashboards show who's reading, for how long, and where understanding drops off. Decisions based on actual data, not guesswork.</p>
+            <p data-lang="ar">لوحات تحليل فورية تُظهر من يقرأ وكم من الوقت وأين تكمن صعوبات الفهم. قرارات مبنية على بيانات حقيقية، لا تخمينات.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FEATURE 1 — AI assistance ============ -->
-    <section class="feature-section">
-      <div class="container-fluid">
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h2 data-lang="en">AI that helps students learn, not just read.</h2>
-            <h2 data-lang="ar">ذكاء اصطناعي يساعد على الفهم، لا مجرد القراءة.</h2>
-            <p data-lang="en">An interactive assistant answers questions directly from book content. Smart page summaries speed up comprehension, and related articles and videos add context where textbooks fall short.</p>
-            <p data-lang="ar">مساعد تفاعلي يجيب على الأسئلة مباشرة من محتوى الكتاب. ملخصات ذكية تسرّع الاستيعاب، ومقالات ومقاطع فيديو ذات صلة تعمق الفهم حيث يقف الكتاب المدرسي.</p>
+          <div class="benefit-card">
+            <div class="benefit-icon">Sync</div>
+            <h4 data-lang="en">Works on every device, even offline</h4>
+            <h4 data-lang="ar">يعمل على كل الأجهزة، حتى بدون إنترنت</h4>
+            <p data-lang="en">Web, Mac, Windows, iOS and Android. Progress, bookmarks and notes sync automatically across all of them. Students keep reading even without a connection.</p>
+            <p data-lang="ar">ويب، ماك، ويندوز، iOS وأندرويد. التقدم والإشارات المرجعية والملاحظات تتزامن تلقائياً عبر جميعها. الطالب يواصل القراءة حتى بدون إنترنت.</p>
           </div>
-          <div class="col-lg-6 d-flex justify-content-end" data-aos="fade-up" data-aos-delay="150">
-            <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M5 7l2 2M19 7l-2 2"/><rect x="6" y="9" width="12" height="9" rx="3"/><path d="M9 21h6M9.5 13h.01M14.5 13h.01"/></svg><span data-li="en">AI Assistant</span><span data-li="ar">المساعد الذكي</span></div>
+          <div class="benefit-card">
+            <div class="benefit-icon">A11y</div>
+            <h4 data-lang="en">Built for every type of learner</h4>
+            <h4 data-lang="ar">مصمم لجميع أنواع المتعلمين</h4>
+            <p data-lang="en">Text-to-speech, instant translation, adjustable display settings and interactive annotations. Minhaji works for a wide range of learning preferences and accessibility needs.</p>
+            <p data-lang="ar">تحويل النص إلى صوت، ترجمة فورية، إعدادات عرض قابلة للتعديل، وتعليقات تفاعلية. منهجي يناسب طيفاً واسعاً من أساليب التعلم واحتياجات إمكانية الوصول.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FEATURE 2 — Analytics (image left) ============ -->
-    <section class="feature-section">
-      <div class="container-fluid">
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-6 order-lg-1 order-2 d-flex justify-content-start" data-aos="fade-up">
-            <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-6M22 20H2"/></svg><span data-li="en">Engagement Analytics</span><span data-li="ar">تحليلات المشاركة</span></div>
+          <div class="benefit-card">
+            <div class="benefit-icon">DRM</div>
+            <h4 data-lang="en">Secure content, simple management</h4>
+            <h4 data-lang="ar">محتوى محمي، إدارة بسيطة</h4>
+            <p data-lang="en">DRM-protected distribution keeps your content secure. SSO with Google, Office 365 and OpenID Connect means one less password for everyone. Scales to thousands of users without the headache.</p>
+            <p data-lang="ar">توزيع محمي بتقنية DRM يحافظ على أمان محتواك. تسجيل الدخول الموحد مع Google وOffice 365 وOpenID Connect يعني كلمة مرور أقل للجميع. قابل للتوسع لآلاف المستخدمين بدون تعقيد.</p>
           </div>
-          <div class="col-lg-6 order-lg-2 order-1" data-aos="fade-up" data-aos-delay="150">
-            <h2 data-lang="en">Full visibility into learner engagement.</h2>
-            <h2 data-lang="ar">رؤية كاملة لمشاركة المتعلمين.</h2>
-            <p data-lang="en">Real-time dashboards show who's reading, for how long, and where understanding drops off. Decisions based on actual data — not guesswork.</p>
-            <p data-lang="ar">لوحات تحليل فورية تُظهر من يقرأ وكم من الوقت وأين تكمن صعوبات الفهم. قرارات مبنية على بيانات حقيقية لا تخمينات.</p>
+          <div class="benefit-card">
+            <div class="benefit-icon">UX</div>
+            <h4 data-lang="en">A reading experience students actually want to use</h4>
+            <h4 data-lang="ar">تجربة قراءة يريد الطلاب فعلاً استخدامها</h4>
+            <p data-lang="en">Personalised themes, text sizes and viewing preferences. Highlights, notes and multimedia embedding. Single-page, double-page, zoom and brightness controls. Reading that adapts to the person.</p>
+            <p data-lang="ar">سمات شخصية وأحجام نص وتفضيلات عرض. تظليل وملاحظات وتضمين وسائط متعددة. تحكم في العرض المفرد والمزدوج والتكبير والسطوع. قراءة تتكيف مع الشخص.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ FEATURE 3 — Every device, offline ============ -->
-    <section class="feature-section">
-      <div class="container-fluid">
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h2 data-lang="en">Works on every device, even offline.</h2>
-            <h2 data-lang="ar">يعمل على كل الأجهزة، حتى بدون إنترنت.</h2>
-            <p data-lang="en">Web, Mac, Windows, iOS and Android. Progress, bookmarks and notes sync automatically across all of them — students keep reading even without a connection.</p>
-            <p data-lang="ar">ويب، ماك، ويندوز، iOS وأندرويد. التقدم والإشارات المرجعية والملاحظات تتزامن تلقائياً عبر جميعها — والطالب يواصل القراءة حتى بدون إنترنت.</p>
-            <ul>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-li="en">Personalised themes, text sizes and viewing preferences</span><span data-li="ar">سمات شخصية وأحجام نص وتفضيلات عرض</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-li="en">Highlights, notes and multimedia embedding</span><span data-li="ar">تظليل وملاحظات وتضمين وسائط متعددة</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg><span data-li="en">Single-page, double-page, zoom and brightness controls</span><span data-li="ar">تحكم في العرض المفرد والمزدوج والتكبير والسطوع</span></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 d-flex justify-content-end" data-aos="fade-up" data-aos-delay="150">
-            <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="13" height="9" rx="1.5"/><rect x="16" y="7" width="5" height="13" rx="1.5"/></svg><span data-li="en">All Devices</span><span data-li="ar">جميع الأجهزة</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+
+
 
     <!-- ============ HOW IT WORKS (dark band) ============ -->
     <section class="howitworks-section" id="how">
@@ -569,42 +538,57 @@
     </section>
 
     <!-- ============ WHO IT'S FOR (industries-style big list) ============ -->
-    <section class="industries-we-support-section" id="who" style="padding-top:6rem;">
+    <section class="whofor-section" id="who">
       <div class="container-fluid">
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-4" data-aos="fade-up">
-            <div class="ph tall"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5M15 20c0-2 1-3.4 3-3.4S21 18 21 20"/></svg><span data-li="en">For Everyone</span><span data-li="ar">للجميع</span></div>
-          </div>
-          <div class="col-lg-8 right-content" data-aos="fade-up" data-aos-delay="150">
-            <h2 data-lang="en">Built for everyone in the <span>learning chain.</span></h2>
-            <h2 data-lang="ar">مصمم لكل طرف في <span>سلسلة التعلم.</span></h2>
+        <div class="whofor-head" data-aos="fade-up">
+          <h2 data-lang="en">Built for everyone in the <span>learning chain.</span></h2>
+          <h2 data-lang="ar">مصمم لكل طرف في <span>سلسلة التعلم.</span></h2>
+        </div>
+        <div class="who-grid" data-aos="fade-up" data-aos-delay="100">
+          <div class="who-card">
+            <h4 data-lang="en">For Learners</h4>
+            <h4 data-lang="ar">للطلاب والمتعلمين</h4>
             <ul>
-              <li><span data-li="en">Learners</span><span data-li="ar">المتعلمون</span><span class="tags"><span data-li="en">Engaging reading · AI help · Online &amp; offline</span><span data-li="ar">قراءة تفاعلية · مساعد ذكي · باتصال أو بدونه</span></span></li>
-              <li><span data-li="en">Educators &amp; Institutions</span><span data-li="ar">المعلمون والمؤسسات</span><span class="tags"><span data-li="en">Engagement data · Easy distribution · Scalable</span><span data-li="ar">بيانات المشاركة · توزيع سهل · قابل للتوسع</span></span></li>
-              <li><span data-li="en">Content Providers</span><span data-li="ar">مزودو المحتوى</span><span class="tags"><span data-li="en">DRM protection · Multi-platform reach · AI tools</span><span data-li="ar">حماية DRM · وصول متعدد المنصات · أدوات ذكية</span></span></li>
+              <li data-lang="en">More engaging reading experience</li>
+              <li data-lang="ar">تجربة قراءة أكثر تفاعلاً</li>
+              <li data-lang="en">AI assistance for faster understanding</li>
+              <li data-lang="ar">مساعد ذكي لفهم أسرع</li>
+              <li data-lang="en">Flexible access, online and offline</li>
+              <li data-lang="ar">وصول مرن، مع الإنترنت أو بدونه</li>
+              <li data-lang="en">Works on any device they already use</li>
+              <li data-lang="ar">يعمل على أي جهاز يستخدمونه</li>
+            </ul>
+          </div>
+          <div class="who-card">
+            <h4 data-lang="en">For Educators &amp; Institutions</h4>
+            <h4 data-lang="ar">للمعلمين والمؤسسات</h4>
+            <ul>
+              <li data-lang="en">Clear data on learner engagement and progress</li>
+              <li data-lang="ar">بيانات واضحة عن مشاركة الطلاب وتقدمهم</li>
+              <li data-lang="en">Simplified content distribution</li>
+              <li data-lang="ar">توزيع محتوى مبسط</li>
+              <li data-lang="en">Scalable for schools, universities and large orgs</li>
+              <li data-lang="ar">قابل للتوسع للمدارس والجامعات والمؤسسات الكبيرة</li>
+              <li data-lang="en">Secure infrastructure, enterprise-grade auth</li>
+              <li data-lang="ar">بنية تحتية آمنة وتوثيق على مستوى المؤسسات</li>
+            </ul>
+          </div>
+          <div class="who-card">
+            <h4 data-lang="en">For Content Providers</h4>
+            <h4 data-lang="ar">لمزودي المحتوى</h4>
+            <ul>
+              <li data-lang="en">DRM protection for digital publications</li>
+              <li data-lang="ar">حماية DRM للمنشورات الرقمية</li>
+              <li data-lang="en">Reach users across all major platforms</li>
+              <li data-lang="ar">الوصول للمستخدمين عبر جميع المنصات الرئيسية</li>
+              <li data-lang="en">Higher engagement through AI-powered tools</li>
+              <li data-lang="ar">تفاعل أعلى عبر أدوات الذكاء الاصطناعي</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ STANDARDS (teal band) ============ -->
-    <section class="certifications-standards-section">
-      <div class="container">
-        <div class="title text-center" data-aos="fade-up">
-          <h2 data-lang="en">Secure by design, simple to manage.</h2>
-          <h2 data-lang="ar">آمن بالتصميم، بسيط في الإدارة.</h2>
-          <p data-lang="en">DRM-protected distribution keeps content secure, while single sign-on means one less password for everyone — and it scales to thousands of users without the headache.</p>
-          <p data-lang="ar">توزيع محمي بتقنية DRM يحافظ على أمان المحتوى، وتسجيل الدخول الموحد يعني كلمة مرور أقل للجميع — وقابل للتوسع لآلاف المستخدمين بدون تعقيد.</p>
-        </div>
-        <ul data-aos="fade-up" data-aos-delay="100">
-          <li><h3>DRM</h3><p><span data-li="en">Protected Content</span><span data-li="ar">محتوى محمي</span></p></li>
-          <li><h3>SSO</h3><p><span data-li="en">Google &amp; Office 365</span><span data-li="ar">جوجل وأوفيس 365</span></p></li>
-          <li><h3>OIDC</h3><p><span data-li="en">OpenID Connect</span><span data-li="ar">OpenID Connect</span></p></li>
-          <li><h3>A11Y</h3><p><span data-li="en">Accessible to all</span><span data-li="ar">متاح للجميع</span></p></li>
-        </ul>
-      </div>
-    </section>
 
     <!-- ============ FAQ ============ -->
     <section class="faq-section" id="faq">
@@ -646,22 +630,6 @@
       </div>
     </section>
 
-    <!-- ============ EMPOWERING / CTA ============ -->
-    <section class="empowering-section">
-      <div class="container-fluid">
-        <div class="row align-items-center row-gap-4">
-          <div class="col-lg-6" data-aos="fade-up">
-            <h2 data-lang="en">See Minhaji in action.</h2>
-            <h2 data-lang="ar">شاهد منهجي من الداخل.</h2>
-          </div>
-          <div class="col-lg-6 d-flex flex-column justify-content-end align-items-lg-end" data-aos="fade-up" data-aos-delay="150">
-            <p data-lang="en">Register your interest and our team will be in touch to walk you through the platform — tailored to your institution. No commitment, and we reply within 2 business days.</p>
-            <p data-lang="ar">سجّل اهتمامك وسيتواصل معك فريقنا لإطلاعك على المنصة — بما يناسب مؤسستك. لا التزام، ونرد خلال يومي عمل.</p>
-            <a href="#register" class="btn"><span data-li="en">Register Your Interest</span><span data-li="ar">سجّل اهتمامك الآن</span><i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -687,7 +655,6 @@
                   <li><a href="#features"><span data-li="en">Features</span><span data-li="ar">المزايا</span></a></li>
                   <li><a href="#how"><span data-li="en">How it works</span><span data-li="ar">كيف يعمل</span></a></li>
                   <li><a href="#who"><span data-li="en">Who it's for</span><span data-li="ar">لمن صُمم</span></a></li>
-                  <li><a href="#register"><span data-li="en">Register</span><span data-li="ar">سجّل</span></a></li>
                 </ul>
               </div>
             </div>
@@ -697,7 +664,7 @@
                 <ul>
                   <li><a href="https://enquire.e7group.ae" target="_blank" rel="noopener">e7 Group</a></li>
                   <li><a href="#faq"><span data-li="en">FAQ</span><span data-li="ar">الأسئلة الشائعة</span></a></li>
-                  <li><a href="#register"><span data-li="en">Contact</span><span data-li="ar">تواصل</span></a></li>
+                  <li><a href="mailto:webteam@digitalnexa.com"><span data-li="en">Contact</span><span data-li="ar">تواصل</span></a></li>
                 </ul>
               </div>
             </div>
@@ -754,10 +721,7 @@
     function openSidebar(){document.getElementById('mobileSidebar').classList.add('active');document.getElementById('sidebarOverlay').classList.add('active');document.body.style.overflow='hidden';}
     function closeSidebar(){document.getElementById('mobileSidebar').classList.remove('active');document.getElementById('sidebarOverlay').classList.remove('active');document.body.style.overflow='';}
 
-    /* ---- Search overlay ---- */
-    function openSearch(){document.getElementById('searchOverlay').classList.add('active');document.body.style.overflow='hidden';}
-    function closeSearch(){document.getElementById('searchOverlay').classList.remove('active');document.body.style.overflow='';}
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeSidebar();}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSidebar();}});
 
     /* ---- FAQ accordion ---- */
     function toggleFaq(btn){
@@ -766,15 +730,6 @@
       const open=item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
       if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
-    }
-
-    /* ---- Form submit ---- */
-    function handleSubmit(e){
-      e.preventDefault();
-      const btn=e.target.querySelector('.submit-btn');
-      const isAr=document.body.classList.contains('ar');
-      btn.innerHTML = isAr ? 'تم الإرسال! شكراً لك ✓' : 'Submitted — thank you ✓';
-      btn.style.background='#9bb833';btn.style.borderColor='#9bb833';btn.style.color='#fff';btn.disabled=true;
     }
 
     /* ---- Sticky header + scroll-to-top ---- */
