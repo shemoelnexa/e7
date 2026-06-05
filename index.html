@@ -80,8 +80,10 @@
 
     /* ============ HERO ============ */
     .hero-section{background-size:cover;background-position:center;background-repeat:no-repeat;min-height:100vh;display:flex;position:relative;align-items:flex-end;}
-    .hero-section .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s ease;}
-    .hero-section .hero-video.ready{opacity:1;}
+    .hero-section .hero-ph{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#06222e,#0a3340);}
+    .hero-section .hero-ph::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:4px 4px;opacity:.5;pointer-events:none;}
+    .hero-section .hero-ph svg{width:56px;height:56px;color:rgba(107,203,218,.7);position:relative;z-index:1;}
+    .hero-section .hero-ph span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);position:relative;z-index:1;}
     .overlay-banner::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,20,28,.55),rgba(3,20,28,.35) 40%,rgba(3,20,28,.85));z-index:1;}
     .overlay-banner>*{position:relative;z-index:2;}
     .inner-banner{height:auto;padding:150px 0 4rem;}
@@ -395,9 +397,7 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero-section inner-banner overlay-banner" id="home">
-      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
-        <source src="assets/minhaji-hero.mp4" type="video/mp4" />
-      </video>
+      <div class="hero-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><span data-li="en">Hero Visual</span><span data-li="ar">الصورة الرئيسية</span></div>
       <div class="container-fluid">
         <div class="row align-items-end">
           <div class="col-xl-6 col-lg-6 d-flex align-items-end" data-aos="fade-up">
@@ -789,15 +789,6 @@
       scrollTop.classList.toggle('visible', window.scrollY>500);
     };
     onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
-
-    /* ---- Hero video graceful reveal ---- */
-    const v=document.getElementById('heroVideo');
-    if(v){
-      const show=()=>v.classList.add('ready');
-      if(v.readyState>=2) show();
-      v.addEventListener('loadeddata', show);
-      v.play().catch(()=>{});
-    }
   </script>
 </body>
 </html>
