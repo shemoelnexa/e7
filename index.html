@@ -80,7 +80,24 @@
     .mobile-menu-toggle .btn:hover{color:var(--teal);}
 
     /* ============ HERO ============ */
-    .hero-section{background-image:url('assets/img/hero-learning.jpg');background-color:#06222e;background-size:cover;background-position:center right;background-repeat:no-repeat;min-height:100vh;display:flex;position:relative;align-items:flex-end;}
+    .hero-section{background:#06222e;min-height:100vh;display:flex;position:relative;overflow:hidden;}
+    .hero-split{display:flex;width:100%;align-items:stretch;}
+    .hero-split .hero-left{position:relative;overflow:hidden;flex:0 0 50%;max-width:50%;display:flex;flex-direction:column;justify-content:flex-end;gap:1.8rem;padding:140px clamp(24px,5vw,90px) 70px;background:#06222e;}
+    .hero-split .hero-left::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,34,46,.86) 0%,rgba(6,34,46,.55) 42%,rgba(6,34,46,.78) 100%);}
+    .hero-split .hero-right{flex:0 0 50%;max-width:50%;position:relative;overflow:hidden;min-height:100vh;background:#06222e;}
+    .hero-split .hero-right .hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:blur(32px) brightness(.55);transform:scale(1.2);}
+    .hero-split .hero-right .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;}
+    .hero-right .hero-video-controls{position:absolute;z-index:3;bottom:22px;right:22px;display:flex;gap:10px;}
+    body.ar .hero-right .hero-video-controls{right:auto;left:22px;}
+    .hero-right .hvc-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(6,34,46,.5);backdrop-filter:blur(6px);color:#fff;font-size:15px;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .15s ease;}
+    .hero-right .hvc-btn:hover{background:var(--teal);border-color:var(--teal);}
+    .hero-right .hvc-btn:active{transform:scale(.92);}
+    .hero-split .hero-right::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
+    body.ar .hero-split{flex-direction:row-reverse;}
+    body.ar .hero-split .hero-right::after{background:linear-gradient(270deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
+    .hero-split .hero-left .banner-description{position:relative;z-index:2;flex:0 0 auto;}
+    .hero-left-img{position:absolute;inset:0;z-index:0;}
+    .hero-left-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
     .hero-section .hero-ph{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#06222e,#0a3340);}
     .hero-section .hero-ph::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:4px 4px;opacity:.5;pointer-events:none;}
     .hero-section .hero-ph svg{width:56px;height:56px;color:rgba(107,203,218,.7);position:relative;z-index:1;}
@@ -290,6 +307,12 @@
       .container-fluid{padding:0 18px;}
       .header-content .menu,.header-content .header-button,.header-content .desktop-lang{display:none!important;}
       .mobile-menu-toggle{display:block!important;}
+      .hero-section{min-height:auto;}
+      .hero-split,body.ar .hero-split{flex-direction:column;}
+      .hero-split .hero-left,.hero-split .hero-right{flex:0 0 100%;max-width:100%;}
+      .hero-split .hero-left{justify-content:flex-start;padding:120px 18px 36px;}
+      .hero-split .hero-right{min-height:56vh;}
+      .hero-left-img{flex:0 0 auto;min-height:220px;}
       .hero-form{margin-top:2rem;}
       .about-section .pr-lg-5{padding:0!important;}
       .what-we-deliver-section h2,.industries-we-support-section h2{font-size:42px;max-width:100%;}
@@ -407,20 +430,29 @@
   <main class="main">
 
     <!-- ============ HERO ============ -->
-    <section class="hero-section inner-banner overlay-banner" id="home">
-      <div class="container-fluid">
-        <div class="row align-items-end">
-          <div class="col-xl-8 col-lg-10" data-aos="fade-up">
-            <div class="banner-description">
+    <section class="hero-section" id="home">
+      <div class="hero-split">
+        <div class="hero-left" data-aos="fade-up">
+          <div class="banner-description">
               <span class="hero-badge"><span data-li="en">Powered by AI · Built for Education</span><span data-li="ar">مدعوم بالذكاء الاصطناعي · مصمم للتعليم</span></span>
               <h1 data-lang="en">Learning that moves as fast as your <span class="accent">students do.</span></h1>
               <h1 data-lang="ar">تعلّم يواكب <span class="accent">وتيرة طلابك.</span></h1>
               <p data-lang="en">Minhaji gives schools and universities a smarter way to deliver, manage and track digital learning — across every device, online and offline.</p>
               <p data-lang="ar">منهجي يمنح المدارس والجامعات طريقة أذكى لتوزيع المحتوى الرقمي وإدارته ومتابعة أداء المتعلمين — عبر جميع الأجهزة، باتصال أو بدونه.</p>
+          </div>
+          <div class="hero-left-img">
+            <img src="assets/img/hero-kids.jpg" alt="Emirati students building tech skills together" />
+          </div>
+        </div>
+          <div class="hero-right" data-aos="fade-up" data-aos-delay="150">
+            <video class="hero-video-bg" id="heroVideoBg" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="assets/minhaji-hero.mp4" type="video/mp4" /></video>
+            <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto"><source src="assets/minhaji-hero.mp4" type="video/mp4" /></video>
+            <div class="hero-video-controls">
+              <button type="button" class="hvc-btn" id="hvPlay" aria-label="Pause video" onclick="heroTogglePlay()"><i class="fas fa-pause"></i></button>
+              <button type="button" class="hvc-btn" id="hvMute" aria-label="Unmute video" onclick="heroToggleMute()"><i class="fas fa-volume-mute"></i></button>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- ============ ABOUT / MEET MINHAJI ============ -->
@@ -742,6 +774,19 @@
       scrollTop.classList.toggle('visible', window.scrollY>500);
     };
     onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    /* ---- Hero video controls ---- */
+    function heroTogglePlay(){
+      const v=document.getElementById('heroVideo'),bg=document.getElementById('heroVideoBg'),b=document.getElementById('hvPlay');
+      if(v.paused){v.play();if(bg)bg.play();b.innerHTML='<i class="fas fa-pause"></i>';b.setAttribute('aria-label','Pause video');}
+      else{v.pause();if(bg)bg.pause();b.innerHTML='<i class="fas fa-play"></i>';b.setAttribute('aria-label','Play video');}
+    }
+    function heroToggleMute(){
+      const v=document.getElementById('heroVideo'),b=document.getElementById('hvMute');
+      v.muted=!v.muted;
+      if(v.muted){b.innerHTML='<i class="fas fa-volume-mute"></i>';b.setAttribute('aria-label','Unmute video');}
+      else{b.innerHTML='<i class="fas fa-volume-up"></i>';b.setAttribute('aria-label','Mute video');}
+    }
   </script>
 </body>
 </html>
