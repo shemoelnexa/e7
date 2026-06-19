@@ -81,23 +81,50 @@
 
     /* ============ HERO ============ */
     .hero-section{background:#06222e;min-height:100vh;display:flex;position:relative;overflow:hidden;}
-    .hero-split{display:flex;width:100%;align-items:stretch;}
-    .hero-split .hero-left{position:relative;overflow:hidden;flex:0 0 50%;max-width:50%;display:flex;flex-direction:column;justify-content:flex-end;gap:1.8rem;padding:140px clamp(24px,5vw,90px) 70px;background:#06222e;}
-    .hero-split .hero-left::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,34,46,.86) 0%,rgba(6,34,46,.55) 42%,rgba(6,34,46,.78) 100%);}
-    .hero-split .hero-right{flex:0 0 50%;max-width:50%;position:relative;overflow:hidden;min-height:100vh;background:#06222e;}
-    .hero-split .hero-right .hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:blur(32px) brightness(.55);transform:scale(1.2);}
-    .hero-split .hero-right .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;}
-    .hero-right .hero-video-controls{position:absolute;z-index:3;bottom:22px;right:22px;display:flex;gap:10px;}
-    body.ar .hero-right .hero-video-controls{right:auto;left:22px;}
-    .hero-right .hvc-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(6,34,46,.5);backdrop-filter:blur(6px);color:#fff;font-size:15px;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .15s ease;}
-    .hero-right .hvc-btn:hover{background:var(--teal);border-color:var(--teal);}
-    .hero-right .hvc-btn:active{transform:scale(.92);}
-    .hero-split .hero-right::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
-    body.ar .hero-split{flex-direction:row-reverse;}
-    body.ar .hero-split .hero-right::after{background:linear-gradient(270deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
-    .hero-split .hero-left .banner-description{position:relative;z-index:2;flex:0 0 auto;}
-    .hero-left-img{position:absolute;inset:0;z-index:0;}
-    .hero-left-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
+    /* shared hero layers */
+    .hero-bg-img{position:absolute;inset:0;z-index:0;}
+    .hero-bg-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
+    .hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;}
+    .hero-inner{position:relative;z-index:2;display:flex;width:100%;align-items:stretch;}
+    .hero-text{display:flex;flex-direction:column;gap:1.8rem;padding:140px clamp(24px,5vw,90px) 70px;}
+    .hero-text .banner-description{position:relative;z-index:2;flex:0 0 auto;}
+    .hero-media{position:relative;}
+    .hero-video-block{position:relative;overflow:hidden;}
+    .hero-video-block .hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:blur(32px) brightness(.55);transform:scale(1.2);}
+    .hero-video-block .hero-video{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+    .hero-video-controls{position:absolute;z-index:3;bottom:18px;right:18px;display:flex;gap:10px;}
+    body.ar .hero-video-controls{right:auto;left:18px;}
+    .hvc-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(6,34,46,.5);backdrop-filter:blur(6px);color:#fff;font-size:15px;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .15s ease;}
+    .hvc-btn:hover{background:var(--teal);border-color:var(--teal);}
+    .hvc-btn:active{transform:scale(.92);}
+    /* Option 1 — split: image-backed text left, video right */
+    .hero-section.opt1 .hero-bg-img{right:auto;width:50%;}
+    body.ar .hero-section.opt1 .hero-bg-img{right:0;left:auto;width:50%;}
+    .hero-section.opt1 .hero-overlay{right:auto;width:50%;background:linear-gradient(180deg,rgba(6,34,46,.86) 0%,rgba(6,34,46,.55) 42%,rgba(6,34,46,.78) 100%);}
+    body.ar .hero-section.opt1 .hero-overlay{right:0;left:auto;width:50%;}
+    .hero-section.opt1 .hero-inner{flex-direction:row;}
+    body.ar .hero-section.opt1 .hero-inner{flex-direction:row-reverse;}
+    .hero-section.opt1 .hero-text{flex:0 0 50%;max-width:50%;justify-content:flex-end;}
+    .hero-section.opt1 .hero-media{flex:0 0 50%;max-width:50%;background:#06222e;}
+    .hero-section.opt1 .hero-video-block{position:absolute;inset:0;}
+    .hero-section.opt1 .hero-video-block .hero-video{object-fit:contain;}
+    .hero-section.opt1 .hero-video-block::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
+    body.ar .hero-section.opt1 .hero-video-block::after{background:linear-gradient(270deg,rgba(6,34,46,.55),rgba(6,34,46,0) 24%);}
+    /* Option 2 — full-bleed image with a floating video block */
+    .hero-section.opt2 .hero-bg-img{inset:0;width:100%;}
+    .hero-section.opt2 .hero-overlay{inset:0;width:100%;background:linear-gradient(90deg,rgba(6,34,46,.9) 0%,rgba(6,34,46,.55) 38%,rgba(6,34,46,.12) 72%);}
+    body.ar .hero-section.opt2 .hero-overlay{background:linear-gradient(270deg,rgba(6,34,46,.9) 0%,rgba(6,34,46,.55) 38%,rgba(6,34,46,.12) 72%);}
+    .hero-section.opt2 .hero-inner{flex-direction:row;align-items:center;}
+    body.ar .hero-section.opt2 .hero-inner{flex-direction:row-reverse;}
+    .hero-section.opt2 .hero-text{flex:1 1 46%;justify-content:center;}
+    .hero-section.opt2 .hero-media{flex:1 1 54%;display:flex;align-items:center;justify-content:flex-end;padding:0 clamp(24px,4vw,70px);}
+    .hero-section.opt2 .hero-video-block{width:100%;max-width:700px;aspect-ratio:16/9;border-radius:18px;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 80px rgba(0,0,0,.55);}
+    .hero-section.opt2 .hero-video-block .hero-video-bg{display:none;}
+    .hero-section.opt2 .hero-video-block .hero-video{object-fit:cover;}
+    /* Layout switcher */
+    .hero-switcher{position:absolute;z-index:5;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(6,34,46,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:4px;box-shadow:0 10px 30px rgba(0,0,0,.35);}
+    .hero-switcher .hsw-btn{border:none;background:transparent;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;padding:8px 18px;border-radius:24px;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;}
+    .hero-switcher .hsw-btn.active{background:var(--teal);color:#fff;}
     .hero-section .hero-ph{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#06222e,#0a3340);}
     .hero-section .hero-ph::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:4px 4px;opacity:.5;pointer-events:none;}
     .hero-section .hero-ph svg{width:56px;height:56px;color:rgba(107,203,218,.7);position:relative;z-index:1;}
@@ -308,11 +335,15 @@
       .header-content .menu,.header-content .header-button,.header-content .desktop-lang{display:none!important;}
       .mobile-menu-toggle{display:block!important;}
       .hero-section{min-height:auto;}
-      .hero-split,body.ar .hero-split{flex-direction:column;}
-      .hero-split .hero-left,.hero-split .hero-right{flex:0 0 100%;max-width:100%;}
-      .hero-split .hero-left{justify-content:flex-start;padding:120px 18px 36px;}
-      .hero-split .hero-right{min-height:56vh;}
-      .hero-left-img{flex:0 0 auto;min-height:220px;}
+      .hero-section.opt1 .hero-bg-img,.hero-section.opt2 .hero-bg-img,body.ar .hero-section.opt1 .hero-bg-img{inset:0;width:100%;}
+      .hero-section.opt1 .hero-overlay,.hero-section.opt2 .hero-overlay,body.ar .hero-section.opt1 .hero-overlay,body.ar .hero-section.opt2 .hero-overlay{inset:0;width:100%;background:linear-gradient(180deg,rgba(6,34,46,.82),rgba(6,34,46,.62));}
+      .hero-section .hero-inner,body.ar .hero-section .hero-inner{flex-direction:column;align-items:stretch;}
+      .hero-section.opt1 .hero-text,.hero-section.opt2 .hero-text{flex:0 0 auto;max-width:100%;justify-content:flex-end;padding:120px 18px 28px;}
+      .hero-section.opt1 .hero-media,.hero-section.opt2 .hero-media{flex:0 0 auto;max-width:100%;padding:0 18px 40px;display:block;}
+      .hero-section.opt1 .hero-video-block,.hero-section.opt2 .hero-video-block{position:relative;inset:auto;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:14px;}
+      .hero-section.opt1 .hero-video-block .hero-video-bg{display:none;}
+      .hero-section.opt1 .hero-video-block .hero-video{object-fit:cover;}
+      .hero-section.opt1 .hero-video-block::after{display:none;}
       .hero-form{margin-top:2rem;}
       .about-section .pr-lg-5{padding:0!important;}
       .what-we-deliver-section h2,.industries-we-support-section h2{font-size:42px;max-width:100%;}
@@ -430,21 +461,23 @@
   <main class="main">
 
     <!-- ============ HERO ============ -->
-    <section class="hero-section" id="home">
-      <div class="hero-split">
-        <div class="hero-left" data-aos="fade-up">
+    <section class="hero-section opt1" id="home">
+      <div class="hero-bg-img" aria-hidden="true">
+        <img src="assets/img/hero-kids.jpg" alt="" />
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-text" data-aos="fade-up">
           <div class="banner-description">
-              <span class="hero-badge"><span data-li="en">Powered by AI · Built for Education</span><span data-li="ar">مدعوم بالذكاء الاصطناعي · مصمم للتعليم</span></span>
-              <h1 data-lang="en">Learning that moves as fast as your <span class="accent">students do.</span></h1>
-              <h1 data-lang="ar">تعلّم يواكب <span class="accent">وتيرة طلابك.</span></h1>
-              <p data-lang="en">Minhaji gives schools and universities a smarter way to deliver, manage and track digital learning — across every device, online and offline.</p>
-              <p data-lang="ar">منهجي يمنح المدارس والجامعات طريقة أذكى لتوزيع المحتوى الرقمي وإدارته ومتابعة أداء المتعلمين — عبر جميع الأجهزة، باتصال أو بدونه.</p>
-          </div>
-          <div class="hero-left-img">
-            <img src="assets/img/hero-kids.jpg" alt="Emirati students building tech skills together" />
+            <span class="hero-badge"><span data-li="en">Powered by AI · Built for Education</span><span data-li="ar">مدعوم بالذكاء الاصطناعي · مصمم للتعليم</span></span>
+            <h1 data-lang="en">Learning that moves as fast as your <span class="accent">students do.</span></h1>
+            <h1 data-lang="ar">تعلّم يواكب <span class="accent">وتيرة طلابك.</span></h1>
+            <p data-lang="en">Minhaji gives schools and universities a smarter way to deliver, manage and track digital learning — across every device, online and offline.</p>
+            <p data-lang="ar">منهجي يمنح المدارس والجامعات طريقة أذكى لتوزيع المحتوى الرقمي وإدارته ومتابعة أداء المتعلمين — عبر جميع الأجهزة، باتصال أو بدونه.</p>
           </div>
         </div>
-          <div class="hero-right" data-aos="fade-up" data-aos-delay="150">
+        <div class="hero-media" data-aos="fade-up" data-aos-delay="150">
+          <div class="hero-video-block">
             <video class="hero-video-bg" id="heroVideoBg" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="assets/minhaji-hero.mp4" type="video/mp4" /></video>
             <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto"><source src="assets/minhaji-hero.mp4" type="video/mp4" /></video>
             <div class="hero-video-controls">
@@ -453,6 +486,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="hero-switcher" role="group" aria-label="Hero layout">
+        <button type="button" class="hsw-btn active" data-opt="1" onclick="setHeroOption(1)">Option 1</button>
+        <button type="button" class="hsw-btn" data-opt="2" onclick="setHeroOption(2)">Option 2</button>
+      </div>
     </section>
 
     <!-- ============ ABOUT / MEET MINHAJI ============ -->
@@ -473,7 +511,7 @@
             </div>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
-            <div class="ph tall"><video class="ph-img" autoplay muted loop playsinline controls controlslist="nodownload" preload="auto"><source src="assets/minhaji-hero.mp4" type="video/mp4" /></video><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 1-2-2z"/><path d="M20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 0 2-2z"/></svg><span data-li="en">Platform Preview</span><span data-li="ar">معاينة المنصة</span></div>
+            <div class="ph tall"><img class="ph-img" src="assets/img/hero-learning.jpg" alt="Student reading on a tablet" /><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 1-2-2z"/><path d="M20 5a2 2 0 0 0-2-2h-6v18h6a2 2 0 0 0 2-2z"/></svg><span data-li="en">Platform Preview</span><span data-li="ar">معاينة المنصة</span></div>
           </div>
         </div>
       </div>
@@ -774,6 +812,14 @@
       scrollTop.classList.toggle('visible', window.scrollY>500);
     };
     onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    /* ---- Hero layout switcher ---- */
+    function setHeroOption(n){
+      const hero=document.getElementById('home');
+      hero.classList.toggle('opt1', n===1);
+      hero.classList.toggle('opt2', n===2);
+      document.querySelectorAll('.hero-switcher .hsw-btn').forEach(b=>b.classList.toggle('active', Number(b.dataset.opt)===n));
+    }
 
     /* ---- Hero video controls ---- */
     function heroTogglePlay(){
