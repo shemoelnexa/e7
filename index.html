@@ -483,6 +483,7 @@
             <div class="hero-video-controls">
               <button type="button" class="hvc-btn" id="hvPlay" aria-label="Pause video" onclick="heroTogglePlay()"><i class="fas fa-pause"></i></button>
               <button type="button" class="hvc-btn" id="hvMute" aria-label="Unmute video" onclick="heroToggleMute()"><i class="fas fa-volume-mute"></i></button>
+              <button type="button" class="hvc-btn" id="hvFs" aria-label="Full screen" onclick="heroToggleFullscreen()"><i class="fas fa-expand"></i></button>
             </div>
           </div>
         </div>
@@ -833,6 +834,26 @@
       if(v.muted){b.innerHTML='<i class="fas fa-volume-mute"></i>';b.setAttribute('aria-label','Unmute video');}
       else{b.innerHTML='<i class="fas fa-volume-up"></i>';b.setAttribute('aria-label','Mute video');}
     }
+    function heroToggleFullscreen(){
+      const v=document.getElementById('heroVideo');
+      const block=v.closest('.hero-video-block');
+      const fsEl=document.fullscreenElement||document.webkitFullscreenElement;
+      if(fsEl){
+        (document.exitFullscreen||document.webkitExitFullscreen||function(){}).call(document);
+      } else if(block&&block.requestFullscreen){
+        block.requestFullscreen();
+      } else if(block&&block.webkitRequestFullscreen){
+        block.webkitRequestFullscreen();
+      } else if(v.webkitEnterFullscreen){ /* iOS Safari: video element only */
+        v.webkitEnterFullscreen();
+      }
+    }
+    document.addEventListener('fullscreenchange',function(){
+      const b=document.getElementById('hvFs');if(!b)return;
+      const on=!!(document.fullscreenElement||document.webkitFullscreenElement);
+      b.innerHTML='<i class="fas fa-'+(on?'compress':'expand')+'"></i>';
+      b.setAttribute('aria-label',on?'Exit full screen':'Full screen');
+    });
   </script>
 </body>
 </html>
